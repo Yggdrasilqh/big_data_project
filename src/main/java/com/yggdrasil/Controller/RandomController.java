@@ -5,6 +5,7 @@ import com.yggdrasil.entity.Website;
 import com.yggdrasil.repository.WebsiteRepository;
 import com.yggdrasil.service.StudentDAO;
 import com.yggdrasil.tools.GenerateData;
+import com.yggdrasil.tools.HadoopConnector;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,7 @@ import java.util.List;
  * Created by yggdrasil on 2017/4/6.
  */
 @Controller
-public class StudentController {
+public class RandomController {
 
     @Resource
     private
