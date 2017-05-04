@@ -4,6 +4,7 @@ import com.yggdrasil.entity.Student;
 import com.yggdrasil.entity.Website;
 import com.yggdrasil.repository.StudentRepository;
 import com.yggdrasil.repository.WebsiteRepository;
+import com.yggdrasil.service.HadoopService;
 import com.yggdrasil.tools.MyRandom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -32,6 +33,8 @@ public class GenerateData {
     private StudentRepository studentRepository;
     @Resource
     private WebsiteRepository websiteRepository;
+    @Resource
+    private HadoopService hadoopService;
 
     public void generate(List<String> sNoList, List<String> wNoList, Date startDate, Date endDate, int length,String path) throws Exception {
 
@@ -47,14 +50,16 @@ public class GenerateData {
         MyRandom<Student> stuRandom = new MyRandom<>();
         MyRandom<Website> webRandom = new MyRandom<>();
 
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File(path)));
+        File inputFile = new File(path + new Date().getTime());
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(inputFile));
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         Student student;
         Website website;
         Date date;
-        while (--length > 0) {
-            date = stuRandom.getRandomDate(startDate, endDate);
+        long dateInterval = (startDate.getTime()-endDate.getTime())/length;
+        for(long tempDate = startDate.getTime() ; tempDate < endDate.getTime() ; tempDate += dateInterval){
+            date = stuRandom.getRandomDate(new Date(tempDate), new Date(tempDate+dateInterval));
             student = stuRandom.getRandomNumberIn(students);
             website = webRandom.getRandomNumberIn(websites);
             bufferedWriter.write(student.getSno() + "," +
@@ -67,5 +72,7 @@ public class GenerateData {
         }
         bufferedWriter.flush();
         bufferedWriter.close();
+
+        hadoopService.calculate(inputFile.getAbsolutePath(),"/input"+inputFile.getName());
     }
 }

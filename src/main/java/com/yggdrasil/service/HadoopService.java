@@ -12,13 +12,17 @@ import javax.annotation.Resource;
 @Service
 public class HadoopService {
     @Resource
-    HadoopConnector hadoopConnector;
+    private HadoopConnector hadoopConnector;
 
     public boolean calculate(String localPath, String hdfsPath) {
-        //TODO
-        RunShell.run("..");
-        hadoopConnector.downloadFile(hdfsPath, localPath);
+
+        //上传原始数据
+        hadoopConnector.uploadFile(localPath, hdfsPath);
+
+        //计算并下载数据
+        //RunShell.run("-------jar 12345678910------");
+        //hadoopConnector.downloadFile("" ,"" );
+
         return true;
     }
-
 }

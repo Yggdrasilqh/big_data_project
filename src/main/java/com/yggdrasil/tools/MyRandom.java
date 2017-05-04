@@ -12,7 +12,7 @@ public class MyRandom<E> {
 
     public int getRandomNumberBetween(int min,int max) {
         Random random = new Random();
-        return random.nextInt(max)+min;
+        return random.nextInt(max-min)+min;
     }
 
     public E getRandomNumberIn(List<E> list) {

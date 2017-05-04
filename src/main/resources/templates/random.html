@@ -145,71 +145,65 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Sex</th>
-                        <th><input type="checkbox" class="checkbox"/></th>
+                        <th><input id="all-check" type="checkbox" class="checkbox"></input></th>
                     </tr>
                     </thead>
-                    <tbody>
-                            <tr th:each="student:${students}">
-                                <td th:text="${student.sno}"></td>
-                                <td th:text="${student.sname}"></td>
-                                <td th:text="${student.ssex}"></td>
-                                <td><input type="checkbox" class="checkbox"/></td>
-                            </tr>
+                    <tbody id="students">
+                    <tr th:each="student:${students}">
+                        <td class="sno" th:text="${student.sno}"></td>
+                        <td class="sname" th:text="${student.sname}"></td>
+                        <td class="ssex" th:text="${student.ssex}"></td>
+                        <td><input type="checkbox" class="checkbox stu-ch-box"></input></td>
+                    </tr>
                     </tbody>
                     <!--<tbody>-->
-                    <!--<tr class="active">-->
-                        <!--<th scope="row">1</th>-->
-                        <!--<td>Column content</td>-->
-                        <!--<td>Column content</td>-->
-                        <!--<td><input type="checkbox" class="checkbox"></td>-->
-                    <!--</tr>-->
                     <!--<tr>-->
-                        <!--<th scope="row">2</th>-->
-                        <!--<td>Column content</td>-->
-                        <!--<td>Column content</td>-->
-                        <!--<td><input type="checkbox" class="checkbox"></td>-->
+                    <!--<th scope="row">2</th>-->
+                    <!--<td>Column content</td>-->
+                    <!--<td>Column content</td>-->
+                    <!--<td><input type="checkbox" class="checkbox"></td>-->
                     <!--</tr>-->
                     <!--<tr class="success">-->
-                        <!--<th scope="row">3</th>-->
-                        <!--<td>Column content</td>-->
-                        <!--<td>Column content</td>-->
-                        <!--<td><input type="checkbox" class="checkbox"></td>-->
+                    <!--<th scope="row">3</th>-->
+                    <!--<td>Column content</td>-->
+                    <!--<td>Column content</td>-->
+                    <!--<td><input type="checkbox" class="checkbox"></td>-->
                     <!--</tr>-->
                     <!--<tr>-->
-                        <!--<th scope="row">4</th>-->
-                        <!--<td>Column content</td>-->
-                        <!--<td>Column content</td>-->
-                        <!--<td><input type="checkbox" class="checkbox"></td>-->
+                    <!--<th scope="row">4</th>-->
+                    <!--<td>Column content</td>-->
+                    <!--<td>Column content</td>-->
+                    <!--<td><input type="checkbox" class="checkbox"></td>-->
                     <!--</tr>-->
                     <!--<tr class="info">-->
-                        <!--<th scope="row">5</th>-->
-                        <!--<td>Column content</td>-->
-                        <!--<td>Column content</td>-->
-                        <!--<td><input type="checkbox" class="checkbox"></td>-->
+                    <!--<th scope="row">5</th>-->
+                    <!--<td>Column content</td>-->
+                    <!--<td>Column content</td>-->
+                    <!--<td><input type="checkbox" class="checkbox"></td>-->
                     <!--</tr>-->
                     <!--<tr>-->
-                        <!--<th scope="row">6</th>-->
-                        <!--<td>Column content</td>-->
-                        <!--<td>Column content</td>-->
-                        <!--<td>Column content</td>-->
+                    <!--<th scope="row">6</th>-->
+                    <!--<td>Column content</td>-->
+                    <!--<td>Column content</td>-->
+                    <!--<td>Column content</td>-->
                     <!--</tr>-->
                     <!--<tr class="warning">-->
-                        <!--<th scope="row">7</th>-->
-                        <!--<td>Column content</td>-->
-                        <!--<td>Column content</td>-->
-                        <!--<td>Column content</td>-->
+                    <!--<th scope="row">7</th>-->
+                    <!--<td>Column content</td>-->
+                    <!--<td>Column content</td>-->
+                    <!--<td>Column content</td>-->
                     <!--</tr>-->
                     <!--<tr>-->
-                        <!--<th scope="row">8</th>-->
-                        <!--<td>Column content</td>-->
-                        <!--<td>Column content</td>-->
-                        <!--<td>Column content</td>-->
+                    <!--<th scope="row">8</th>-->
+                    <!--<td>Column content</td>-->
+                    <!--<td>Column content</td>-->
+                    <!--<td>Column content</td>-->
                     <!--</tr>-->
                     <!--<tr class="danger">-->
-                        <!--<th scope="row">9</th>-->
-                        <!--<td>Column content</td>-->
-                        <!--<td>Column content</td>-->
-                        <!--<td>Column content</td>-->
+                    <!--<th scope="row">9</th>-->
+                    <!--<td>Column content</td>-->
+                    <!--<td>Column content</td>-->
+                    <!--<td>Column content</td>-->
                     <!--</tr>-->
                     <!--</tbody>-->
                 </table>
@@ -224,14 +218,14 @@
                         <tr class="warning">
                             <th>URL</th>
                             <th>Name</th>
-                            <th>Modify</th>
+                            <th><input id="all-check2" type="checkbox" class="checkbox"/></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="website:${websites}">
-                            <td th:text="${website.url}"></td>
-                            <td th:text="${website.wname}"></td>
-                            <td><input type="checkbox" class="checkbox"/></td>
+                        <tr id="websites" th:each="website:${websites}">
+                            <td class="url" th:text="${website.url}"></td>
+                            <td class="wname" th:text="${website.wname}"></td>
+                            <td><input type="checkbox" class="checkbox web-ch-box"/></td>
                         </tr>
                         </tbody>
                     </table>
@@ -250,16 +244,16 @@
                         <hr/>
                         <div class="form-group has-success">
                             <label class="control-label">StartDate</label>
-                            <input type="datetime-local" class="form-control1" required=""></input>
+                            <input id="start-time" type="datetime-local" class="form-control1" required=""/>
                         </div>
                         <div class="form-group has-error">
                             <label class="control-label normal">EndDate</label>
-                            <input type="datetime-local" class="form-control1" required=""></input>
+                            <input id="end-time" type="datetime-local" class="form-control1" required=""/>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="btn-success btn" value="">SUBMIT</button>
+            <button class="btn-success btn" value="" onclick="sub()">SUBMIT</button>
         </div>
     </div>
     <!-- /#page-wrapper -->
@@ -269,5 +263,75 @@
 <!-- Bootstrap Core JavaScript -->
 
 <div class="jqvmap-label" style="display: none;"></div>
+
+<script>
+    $(document).ready(function () {
+        budleAllCheck();
+        budleAllCheck2();
+    });
+    function sub() {
+        var snoList = getSnoList();
+        var urlList = getUrlList();
+        console.log(snoList);
+        console.log(urlList);
+        console.log(JSON.stringify(snoList));
+        $.ajax({
+            url: "/random",
+            type: 'post',
+            dataType: 'application/json',
+            data: {"snoList": JSON.stringify(snoList),"urlList": JSON.stringify(urlList)},
+            async: false,
+            success: function () {
+                alert("成功");
+            }
+        })
+    }
+
+    function budleAllCheck() {
+        $("#all-check").on('change', function () {
+            $(".stu-ch-box").unbind();
+            if ($(this).is(":checked"))
+                $(".stu-ch-box").prop("checked", true);
+            else
+                $(".stu-ch-box").prop("checked",false);
+        })
+    }
+
+    function budleAllCheck2() {
+        $("#all-check2").on('change', function () {
+            $(".web-ch-box").unbind();
+            if ($(this).is(":checked"))
+                $(".web-ch-box").prop("checked", true);
+            else
+                $(".web-ch-box").prop("checked",false);
+        })
+    }
+
+    function getSnoList() {
+        var stuList = $(".sno");
+        var stuNo = [];
+        stuList.each(function () {
+            var checked = ($(this).siblings('td').find(".stu-ch-box").is(":checked"));
+            console.log(checked);
+            if (checked) {
+                stuNo.push(["sno",$(this).text()]);
+            }
+        });
+        return stuNo;
+    }
+
+    function getUrlList() {
+        var stuList = $(".url");
+        var urlList = [];
+        stuList.each(function () {
+            var checked = ($(this).siblings('td').find(".web-ch-box").is(":checked"));
+            console.log(checked);
+            if (checked) {
+                urlList.push(["url",$(this).text()]);
+            }
+        });
+        return urlList;
+    }
+</script>
 </body>
 </html>

@@ -17,7 +17,6 @@ import java.net.URI;
 /**
  * Created by yggdrasil on 2017/4/20.
  */
-@Component
 public class HadoopConnector {
     private FileSystem fileSystem;
     private String path;
@@ -53,7 +52,7 @@ public class HadoopConnector {
         }
     }
 
-    public boolean downloadFile(String hdfsPath,String localPath) {
+    public boolean downloadFile(String localPath,String hdfsPath) {
         try {
             FSDataInputStream inputStream = fileSystem.open(new Path(path + hdfsPath));
             FileOutputStream outputStream = new FileOutputStream(localPath);
