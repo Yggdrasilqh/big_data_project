@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.transaction.Transactional;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -36,6 +37,7 @@ public class GenerateData {
     @Resource
     private HadoopService hadoopService;
 
+    @Transactional
     public void generate(List<String> sNoList, List<String> wNoList, Date startDate, Date endDate, int length,String path) throws Exception {
 
         List<Student> students;
@@ -57,7 +59,7 @@ public class GenerateData {
         Student student;
         Website website;
         Date date;
-        long dateInterval = (startDate.getTime()-endDate.getTime())/length;
+        long dateInterval = (endDate.getTime()-startDate.getTime())/length;
         for(long tempDate = startDate.getTime() ; tempDate < endDate.getTime() ; tempDate += dateInterval){
             date = stuRandom.getRandomDate(new Date(tempDate), new Date(tempDate+dateInterval));
             student = stuRandom.getRandomNumberIn(students);
@@ -73,6 +75,6 @@ public class GenerateData {
         bufferedWriter.flush();
         bufferedWriter.close();
 
-        hadoopService.calculate(inputFile.getAbsolutePath(),"/input"+inputFile.getName());
+//        hadoopService.calculate(inputFile.getAbsolutePath(),"/input"+inputFile.getName(),inputFile.getName());
     }
 }

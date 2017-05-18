@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * Created by yggdrasil on 2017/5/3.
  */
+
 public class RandomList {
     private List<Student> stuList;
     private List<Website> webList;

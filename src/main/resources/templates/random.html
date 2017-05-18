@@ -272,14 +272,14 @@
     function sub() {
         var snoList = getSnoList();
         var urlList = getUrlList();
-        console.log(snoList);
-        console.log(urlList);
-        console.log(JSON.stringify(snoList));
+        var temp = {stuList: snoList, webList: urlList};
+        var post_data = JSON.stringify(temp)
+        console.log(temp);
         $.ajax({
             url: "/random",
             type: 'post',
-            dataType: 'application/json',
-            data: {"snoList": JSON.stringify(snoList),"urlList": JSON.stringify(urlList)},
+            contentType: "application/json; charset=utf-8",
+            data: post_data,
             async: false,
             success: function () {
                 alert("成功");
@@ -314,22 +314,24 @@
             var checked = ($(this).siblings('td').find(".stu-ch-box").is(":checked"));
             console.log(checked);
             if (checked) {
-                stuNo.push(["sno",$(this).text()]);
+                stuNo.push($(this).text());
             }
         });
+        stuList = $(stuList).toArray();
         return stuNo;
     }
 
     function getUrlList() {
         var stuList = $(".url");
-        var urlList = [];
+        var urlList = new Array();
         stuList.each(function () {
             var checked = ($(this).siblings('td').find(".web-ch-box").is(":checked"));
             console.log(checked);
             if (checked) {
-                urlList.push(["url",$(this).text()]);
+                urlList.push($(this).text());
             }
         });
+        urlList = $(urlList).toArray();
         return urlList;
     }
 </script>

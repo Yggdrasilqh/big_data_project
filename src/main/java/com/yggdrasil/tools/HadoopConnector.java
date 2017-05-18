@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URI;
 
 
@@ -61,6 +62,14 @@ public class HadoopConnector {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public void deleteFile(String hdfsPath) {
+        try {
+            fileSystem.delete(new Path(hdfsPath), true);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
