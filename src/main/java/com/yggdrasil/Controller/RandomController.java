@@ -6,16 +6,15 @@ import com.yggdrasil.entity.Website;
 import com.yggdrasil.repository.WebsiteRepository;
 import com.yggdrasil.service.StudentDAO;
 import com.yggdrasil.tools.GenerateData;
-//import com.yggdrasil.tools.HadoopConnector;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,7 +30,7 @@ public class RandomController {
     private WebsiteRepository websiteRepository;
     @Resource
     private GenerateData generateData;
-    @Value("${random.data.path}")
+    @Value("${randomDataPath}")
     private String path;
 
     @GetMapping("/random")
@@ -50,8 +49,18 @@ public class RandomController {
 //    }
 
     @PostMapping("/random")
-    public boolean random(List<String> snoList,List<String> urlList,Date startTime,Date endTime) throws Exception {
-//        generateData.generate(randomList.getStuList(), randomList.getUrlList(), randomList.getStartTime(), randomList.getEndTime(), 99, path);
-        return true;
+    public @ResponseBody
+    String random(@RequestBody RandomList randomList) throws Exception {
+        if (randomList.getLength() > 0 && randomList.getStartTime().getTime() < randomList.getEndTime().getTime()) {
+            generateData.generate(randomList.getStuList(),
+                    randomList.getWebList(),
+                    randomList.getStartTime(),
+                    randomList.getEndTime(),
+                    randomList.getLength(),
+                    path);
+            return "success";
+        } else {
+            return "error";
+        }
     }
 }

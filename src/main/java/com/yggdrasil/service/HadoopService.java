@@ -1,6 +1,8 @@
 package com.yggdrasil.service;
 
+import com.yggdrasil.entity.Record;
 import com.yggdrasil.entity.Result;
+import com.yggdrasil.repository.RecordRepository;
 import com.yggdrasil.repository.ResultRepository;
 import com.yggdrasil.tools.HadoopConnector;
 import com.yggdrasil.tools.RunShell;
@@ -20,8 +22,10 @@ public class HadoopService {
     private HadoopConnector hadoopConnector;
     @Resource
     private ResultRepository resultRepository;
+    @Resource
+    private RecordRepository recordRepository;
 
-    public boolean calculate(String localPath, String hdfsPath,String dataName) throws Exception{
+    public void calculate(String localPath, String hdfsPath,String dataName){
 
         //上传原始数据
         hadoopConnector.uploadFile(localPath, hdfsPath);
@@ -32,10 +36,22 @@ public class HadoopService {
         hadoopConnector.downloadFile(
                 localPath,
                 hdfsPath);
-        sendDateToDatabase(localPath,dataName);
+        try {
+            sendDateToDatabase(localPath, dataName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-
-        return true;
+    public void calculate(String name){
+        try {
+            Thread.sleep(16000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Record record = recordRepository.findOne(name);
+        record.setStatus(1);
+        recordRepository.saveAndFlush(record);
     }
 
     public void sendDateToDatabase(String localPath,String dataName) throws IOException, ClassNotFoundException {

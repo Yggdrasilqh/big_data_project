@@ -39,7 +39,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../static/index.html">JFCH</a>
+            <a class="navbar-brand" href="random">JFCH</a>
         </div>
 
         <!-- /.navbar-header -->
@@ -49,76 +49,13 @@
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav in" id="side-menu">
                     <li>
-                        <a href="../static/index.html" class="active"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
+                        <a href="random" class="active"><i class="fa fa-dashboard fa-fw nav_icon"></i>RandomPage</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-laptop nav_icon"></i>Layouts<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li>
-                                <a href="../static/grids.html">Grid System</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-indent nav_icon"></i>Menu Levels<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li>
-                                <a href="../static/graphs.html">Graphs</a>
-                            </li>
-                            <li>
-                                <a href="../static/typography.html">Typography</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-envelope nav_icon"></i>Mailbox<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li>
-                                <a href="../static/inbox.html">Inbox</a>
-                            </li>
-                            <li>
-                                <a href="../static/compose.html">Compose email</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="../static/widgets.html"><i class="fa fa-flask nav_icon"></i>Widgets</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-check-square-o nav_icon"></i>Forms<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li>
-                                <a href="../static/forms.html">Basic Forms</a>
-                            </li>
-                            <li>
-                                <a href="../static/validation.html">Validation</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-table nav_icon"></i>Tables<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li>
-                                <a href="../static/basic_tables.html">Basic Tables</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
+                        <a href="history.html"><i class="fa fa-laptop nav_icon"></i>History Page</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-sitemap fa-fw nav_icon"></i>Css<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li>
-                                <a href="../static/media.html">Media</a>
-                            </li>
-                            <li>
-                                <a href="../static/login.html">Login</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
                     </li>
                 </ul>
             </div>
@@ -250,6 +187,10 @@
                             <label class="control-label normal">EndDate</label>
                             <input id="end-time" type="datetime-local" class="form-control1" required=""/>
                         </div>
+                        <div class="form-group has-warning">
+                            <label class="control-label normal">DataLength</label>
+                            <input id="length" type="number" class="form-control1" required=""/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -272,7 +213,16 @@
     function sub() {
         var snoList = getSnoList();
         var urlList = getUrlList();
-        var temp = {stuList: snoList, webList: urlList};
+        var startTime = $("#start-time").val();
+        var endTime = $("#end-time").val();
+        var length = $("#length").val();
+        var temp = {
+            stuList: snoList,
+            webList: urlList,
+            startTime: startTime,
+            endTime: endTime,
+            length: length
+        };
         var post_data = JSON.stringify(temp)
         console.log(temp);
         $.ajax({

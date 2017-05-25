@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -11,20 +11,67 @@
         window.scrollTo(0, 1);
     } </script>
     <!-- Bootstrap Core CSS -->
-    <link th:href="@{/css/bootstrap.min.css}" href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link  href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <!-- Custom CSS -->
-    <link th:href="@{/css/style.css}" rel="stylesheet" href="css/style.css" type="text/css"/>
+    <link  rel="stylesheet" href="css/style.css" type="text/css"/>
     <!-- Graph CSS -->
-    <link th:href="@{/css/lines.css}" rel="stylesheet" href="css/lines.css" type="text/css"/>
-    <link th:href="@{/css/font-awesome.css}" href="css/font-awesome.css" rel="stylesheet"/>
+    <link  rel="stylesheet" href="css/lines.css" type="text/css"/>
+    <link  href="css/font-awesome.css" rel="stylesheet"/>
     <!-- jQuery -->
-    <script th:src="@{/js/jquery.min.js}" src="js/jquery.min.js"></script>
+    <script  src="js/jquery.min.js"></script>
     <!-- Nav CSS -->
-    <link th:href="@{/css/custom.css}" href="css/custom.css" rel="stylesheet"/>
+    <link  href="css/custom.css" rel="stylesheet"/>
     <!-- Metis Menu Plugin JavaScript -->
-    <script th:src="@{/js/metisMenu.min.js}" src="js/metisMenu.min.js"></script>
-    <script th:src="@{/js/custom.js}" src="js/custom.js"></script>
+    <script  src="js/metisMenu.min.js"></script>
+    <script  src="js/custom.js"></script>
+    <style>
+        .spinner {
+        }
 
+        .spinner > div {
+            width: 10px;
+            height: 10px;
+            background-color: #eea236;
+
+            border-radius: 100%;
+            display: inline-block;
+            -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+            animation: bouncedelay 1.4s infinite ease-in-out;
+            /* Prevent first frame from flickering when animation starts */
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+
+        .spinner .bounce1 {
+            -webkit-animation-delay: -0.32s;
+            animation-delay: -0.32s;
+        }
+
+        .spinner .bounce2 {
+            -webkit-animation-delay: -0.16s;
+            animation-delay: -0.16s;
+        }
+
+        @-webkit-keyframes bouncedelay {
+            0%, 80%, 100% {
+                -webkit-transform: scale(0.0)
+            }
+            40% {
+                -webkit-transform: scale(1.0)
+            }
+        }
+
+        @keyframes bouncedelay {
+            0%, 80%, 100% {
+                transform: scale(0.0);
+                -webkit-transform: scale(0.0);
+            }
+            40% {
+                transform: scale(1.0);
+                -webkit-transform: scale(1.0);
+            }
+        }
+    </style>
 
 </head>
 <body>
@@ -39,91 +86,28 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../static/index.html">JFCH</a>
+            <a class="navbar-brand" href="random">JFCH</a>
         </div>
 
         <!-- /.navbar-header -->
-
 
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav in" id="side-menu">
                     <li>
-                        <a href="../static/index.html" class="active"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
+                        <a href="random" class="active"><i class="fa fa-dashboard fa-fw nav_icon"></i>RandomPage</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-laptop nav_icon"></i>Layouts<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li>
-                                <a href="../static/grids.html">Grid System</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-indent nav_icon"></i>Menu Levels<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li>
-                                <a href="../static/graphs.html">Graphs</a>
-                            </li>
-                            <li>
-                                <a href="../static/typography.html">Typography</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-envelope nav_icon"></i>Mailbox<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li>
-                                <a href="../static/inbox.html">Inbox</a>
-                            </li>
-                            <li>
-                                <a href="../static/compose.html">Compose email</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="../static/widgets.html"><i class="fa fa-flask nav_icon"></i>Widgets</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-check-square-o nav_icon"></i>Forms<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li>
-                                <a href="../static/forms.html">Basic Forms</a>
-                            </li>
-                            <li>
-                                <a href="../static/validation.html">Validation</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-table nav_icon"></i>Tables<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li>
-                                <a href="../static/basic_tables.html">Basic Tables</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
+                        <a href="history.html"><i class="fa fa-laptop nav_icon"></i>History Page</span></a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-sitemap fa-fw nav_icon"></i>Css<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li>
-                                <a href="../static/media.html">Media</a>
-                            </li>
-                            <li>
-                                <a href="../static/login.html">Login</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
                     </li>
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->
         </div>
+
         <!-- /.navbar-static-side -->
     </nav>
 
@@ -144,7 +128,7 @@
                             <th>Status</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="record-body">
                         <tr>
                             <td>1</td>
                             <td>10,100</td>
@@ -161,69 +145,16 @@
                             <td>3</td>
                             <td>12,802</td>
                             <td>2018-02-28 01:32:12</td>
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>12,802</td>
-                            <td>2018-02-28 01:32:12</td>
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>12,802</td>
-                            <td>2018-02-28 01:32:12</td>
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>12,802</td>
-                            <td>2018-02-28 01:32:12</td>
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>12,802</td>
-                            <td>2018-02-28 01:32:12</td>
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>12,802</td>
-                            <td>2018-02-28 01:32:12</td>
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>12,802</td>
-                            <td>2018-02-28 01:32:12</td>
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>12,802</td>
-                            <td>2018-02-28 01:32:12</td>
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>12,802</td>
-                            <td>2018-02-28 01:32:12</td>
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>12,802</td>
-                            <td>2018-02-28 01:32:12</td>
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>12,802</td>
-                            <td>2018-02-28 01:32:12</td>
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td>
+                                <div class="spinner">
+                                    <div class="bounce1"></div>
+                                    <div class="bounce2"></div>
+                                    <div class="bounce3"></div>
+                                </div>
+                            </td>
                         </tr>
                         </tbody>
+
                     </table>
                 </div>
             </div>
@@ -238,4 +169,51 @@
 
 <div class="jqvmap-label" style="display: none;"></div>
 </body>
+<script>
+
+    $(document).ready(function () {
+        showRecord();
+        setInterval(showRecord, 1000);
+    });
+
+    function getRecord() {
+        var record;
+        $.ajax({
+            url: '/record/getAll',
+            async: false,
+            success: function (data) {
+                record = data;
+            }
+        });
+        return record;
+    }
+
+    function showRecord() {
+        var body = $("#record-body");
+        var recordData = getRecord();
+        var content = "";
+        $(recordData).each(function () {
+            content += "<tr>" +
+                "<td><a href='/result.html?dataName="+this.data_name+"'>"+ this.data_name +"</a></td>"+
+                "<td>"+ this.data_num +"</td>" +
+                "<td>"+ this.time +"</td>";
+            if(this.status === 1) {
+                content += "<td><i class='fa fa-check' aria-hidden='true'></i></td>" +
+                "</tr>";
+            } else {
+                content += '<td>'+
+                    '<div class="spinner">' +
+                    '<div class="bounce1"></div>' +
+                    '<div class="bounce2"></div>' +
+                    '<div class="bounce3"></div>' +
+                    '</div>' +
+                    '</td></tr>';
+            }
+            console.log(recordData+new Date());
+        });
+        body.empty();
+        body.append(content);
+    }
+
+</script>
 </html>

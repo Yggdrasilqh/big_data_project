@@ -8,14 +8,14 @@ import java.util.Random;
 /**
  * Created by yggdrasil on 2017/3/16.
  */
-public class MyRandom<E> {
+public class MyRandom {
 
     public int getRandomNumberBetween(int min,int max) {
         Random random = new Random();
         return random.nextInt(max-min)+min;
     }
 
-    public E getRandomNumberIn(List<E> list) {
+    public <E> E getRandomNumberIn(List<E> list) {
         int min = 0;
         int max = list.size();
         return list.get(getRandomNumberBetween(min, max));

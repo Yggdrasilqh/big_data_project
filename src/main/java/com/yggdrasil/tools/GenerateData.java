@@ -1,17 +1,14 @@
 package com.yggdrasil.tools;
 
+import com.yggdrasil.entity.Record;
 import com.yggdrasil.entity.Student;
 import com.yggdrasil.entity.Website;
+import com.yggdrasil.repository.RecordRepository;
 import com.yggdrasil.repository.StudentRepository;
 import com.yggdrasil.repository.WebsiteRepository;
 import com.yggdrasil.service.HadoopService;
-import com.yggdrasil.tools.MyRandom;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
@@ -19,9 +16,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -36,6 +31,9 @@ public class GenerateData {
     private WebsiteRepository websiteRepository;
     @Resource
     private HadoopService hadoopService;
+    @Resource
+    private RecordRepository recordRepository;
+    private static Logger LOG = Logger.getLogger(GenerateData.class);
 
     @Transactional
     public void generate(List<String> sNoList, List<String> wNoList, Date startDate, Date endDate, int length,String path) throws Exception {
@@ -49,8 +47,8 @@ public class GenerateData {
             students = studentRepository.findAll();
             websites = websiteRepository.findAll();
         }
-        MyRandom<Student> stuRandom = new MyRandom<>();
-        MyRandom<Website> webRandom = new MyRandom<>();
+        MyRandom stuRandom = new MyRandom();
+        MyRandom webRandom = new MyRandom();
 
         File inputFile = new File(path + new Date().getTime());
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(inputFile));
@@ -74,7 +72,13 @@ public class GenerateData {
         }
         bufferedWriter.flush();
         bufferedWriter.close();
-
+        LOG.info("已将"+length+"条数据写入文件"+inputFile.getAbsolutePath());
+        recordRepository.saveAndFlush(new Record(inputFile.getName(),length,null,0));
+        new Thread(() -> {
+            //TODO: 目前calculate为测试方法，正式方法为下面被注释的
+//            hadoopService.calculate(inputFile.getAbsolutePath(), "/input" + inputFile.getName(), inputFile.getName());
+            hadoopService.calculate(inputFile.getName());
+        }).start();
 //        hadoopService.calculate(inputFile.getAbsolutePath(),"/input"+inputFile.getName(),inputFile.getName());
     }
 }
